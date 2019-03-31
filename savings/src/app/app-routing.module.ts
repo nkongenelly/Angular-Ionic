@@ -9,6 +9,9 @@ const routes: Routes = [
   { path: 'projects', loadChildren: './projects/projects.module#ProjectsPageModule' },
   { path: 'monthly', loadChildren: './monthly/monthly.module#MonthlyPageModule' },
   { path: 'offering', loadChildren: './offering/offering.module#OfferingPageModule' },
+  { path: 'add-savings', loadChildren: './add-savings/add-savings.module#AddSavingsPageModule' },
+  { path: 'add-offering', loadChildren: './add-offering/add-offering.module#AddOfferingPageModule' },
+  { path: 'edit-savings', loadChildren: './edit-savings/edit-savings.module#EditSavingsPageModule' },
 ];
 
 @NgModule({

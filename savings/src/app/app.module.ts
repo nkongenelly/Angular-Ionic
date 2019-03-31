@@ -8,15 +8,24 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SavingsPage } from './savings/savings.page';
+import { IncomePage } from './income/income.page';
+import { ProjectsPage } from './projects/projects.page';
+import { MonthlyPage } from './monthly/monthly.page';
+import { OfferingPage } from './offering/offering.page';
+import { SavingsService } from 'src/services/savings.services';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SavingsService
   ],
   bootstrap: [AppComponent]
 })

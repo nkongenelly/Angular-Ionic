@@ -1,7 +1,19 @@
 <ion-header>
   <ion-toolbar>
-      <ion-back-button defaultHref="/home" start></ion-back-button>
-    <ion-title>offering</ion-title>
+    <ion-nav>
+      <ion-buttons start>
+        <button ion-button icon-only>
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </button>
+      </ion-buttons>
+      <ion-buttons right>
+          <button ion-button icon-only (click)="buttonAddOffering()">
+              <ion-icon name="add"></ion-icon>
+          </button>
+      </ion-buttons>
+      <ion-title> My Offerings</ion-title>
+      
+    </ion-nav>
   </ion-toolbar>
 </ion-header>
 
