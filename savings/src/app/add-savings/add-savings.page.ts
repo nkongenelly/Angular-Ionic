@@ -8,7 +8,16 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./add-savings.page.scss'],
 })
 export class AddSavingsPage implements OnInit {
-
+  mySaving: {savings:String,amount: Number}[] = [];
+  ionViewWillEnter(){
+    this.mySaving = this.savingsService.getOneSaving();
+    if(this.mySaving.length >0){
+    console.log(this.mySaving.length);
+    }
+    else{
+      console.log(this.mySaving.length);
+    }
+   }
   constructor(private savingsService: SavingsService, public navCtrl: NavController) { }
 
   ngOnInit() {

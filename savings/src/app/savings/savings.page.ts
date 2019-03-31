@@ -19,15 +19,14 @@ export class SavingsPage implements OnInit {
   ngOnInit() {
   }
 
-  buttonAddSavings (){
+  buttonAddSavings (editable?: {savings: String, amount: Number}){
     this.navCtrl.navigateForward('/add-savings');
   }
-  editSavings(data){
-    let editSaving = data.getAttribute('allSavings');
-    let editAmount = data.getAttribute('amounts');
-    this.navCtrl.navigateForward('/edit-savings');
-
-}
+  editSaving(indexes){
+  let editable = this.savingsService.editMySavings(indexes);
+  this.savingsService.addSaving(editable);
+    this.navCtrl.navigateForward('/add-savings');
+  }
 async deleteSaving(index){
   let alert = await this.alertCtrl.create({
     header: 'Confirm delete user',

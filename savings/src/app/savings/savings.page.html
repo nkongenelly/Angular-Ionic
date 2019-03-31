@@ -22,7 +22,7 @@
     <ion-label> {{ saving.savings}}</ion-label>
     <ion-badge color="tertiary" slot="end"> {{ saving.amount }} </ion-badge>
     <ion-button 
-      
+      (click)="editSaving(i)"
       color="success" size="small" >Edit</ion-button>
     <ion-button color="danger" size="small" (click)="deleteSaving($i)">Delete</ion-button>
   </ion-item>
