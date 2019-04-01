@@ -14,13 +14,22 @@ import { ProjectsPage } from './projects/projects.page';
 import { MonthlyPage } from './monthly/monthly.page';
 import { OfferingPage } from './offering/offering.page';
 import { SavingsService } from 'src/services/savings.services';
+import { AngularFireModule } from 'angularfire2';
+//import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,

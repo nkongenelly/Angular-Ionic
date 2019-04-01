@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-projects',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./projects.page.scss'],
 })
 export class ProjectsPage implements OnInit {
-
-  constructor() { }
+  projects: any[];
+  constructor(db: AngularFireDatabase) { 
+    db.list('/projects').valueChanges()
+        .subscribe(projects => {
+            this.projects = projects;
+            console.log(this.projects);
+        });
+  }
 
   ngOnInit() {
   }

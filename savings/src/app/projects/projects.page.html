@@ -7,6 +7,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+    <ion-item >
+      <ion-label>{{ projects[2] }}</ion-label>
+      <ion-badge color="tertiary" slot="end"> {{ projects[0] }} </ion-badge>
+      <ion-button 
+        (click)="editSaving(i)"
+        color="success" size="small" >Edit</ion-button>
+      <ion-button color="danger" size="small" (click)="deleteSaving($i)">Delete</ion-button>
+    </ion-item>
 
 </ion-content>
