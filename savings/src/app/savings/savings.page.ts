@@ -9,6 +9,7 @@ import { SavingsService } from 'src/services/savings.services';
 })
 export class SavingsPage implements OnInit {
   mySavings: {savings: String, amount: Number}[] = [];
+
   constructor(public navCtrl: NavController, private savingsService: SavingsService, public alertCtrl: AlertController) {
 
    }
@@ -19,11 +20,13 @@ export class SavingsPage implements OnInit {
   ngOnInit() {
   }
 
-  buttonAddSavings (editable?: {savings: String, amount: Number}){
+  buttonAddSavings (){
     this.navCtrl.navigateForward('/add-savings');
+    
   }
   editSaving(indexes){
-  let editable = this.savingsService.editMySavings(indexes);
+  let editable:{savings:String,amount: Number,id?: Number} = this.savingsService.editMySavings(indexes);
+  console.log(editable);
   this.savingsService.addSaving(editable);
     this.navCtrl.navigateForward('/add-savings');
   }

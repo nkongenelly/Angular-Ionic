@@ -1,16 +1,22 @@
 export class SavingsService{
     private mySavings: {savings:String,amount: Number}[] = [];
-    private mySaving: {savings:String,amount: Number}[] = [];
+    private mySaving: {savings:String,amount: Number,id?: Number}[] = [];
 
     addSavings(mySaving: {savings:String,amount: Number}){
         this.mySavings.push(mySaving);
     }
 
-    addSaving(myOneSaving: {savings:String,amount: Number}){
+    replaceSavings(value: {savings:String,amount: Number,id?}){
+        this.mySaving = [];
+        return this.mySavings[value.id] = {savings:value.savings,amount:value.amount};
+        //console.log(this.mySavings);
+    }
+
+    addSaving(myOneSaving: {savings:String,amount: Number,id?: Number}){
         this.mySaving = [];
         this.mySaving.push(myOneSaving);
-        //console.log(myOneSaving);
-        //console.log(this.mySaving);
+        console.log(myOneSaving);
+        console.log(this.mySaving);
     }
 
     getMySaving(){
@@ -23,7 +29,9 @@ export class SavingsService{
     }
     
     editMySavings(i){
-        let editable = this.mySavings[i]
+        let editable: {savings:String,amount: Number,id?: Number} = this.mySavings[i];
+        editable['id'] = i;
+        console.log(editable);
         return editable;
     }
 

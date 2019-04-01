@@ -8,7 +8,8 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./add-savings.page.scss'],
 })
 export class AddSavingsPage implements OnInit {
-  mySaving: {savings:String,amount: Number}[] = [];
+  mySaving: {savings:String,amount: Number,id?: Number}[] = [];
+
   ionViewWillEnter(){
     this.mySaving = this.savingsService.getOneSaving();
     if(this.mySaving.length >0){
@@ -25,6 +26,13 @@ export class AddSavingsPage implements OnInit {
   onAddSavings(value:{savings: String,amount: Number}){
     this.savingsService.addSavings(value);
     this.navCtrl.navigateBack('/savings');
+  }
+
+  onEditSavings(value:{savings: String,amount: Number,id?: Number}){
+    this.savingsService.replaceSavings(value);
+    this.navCtrl.navigateBack('/savings');
+    this.mySaving = [];
+    console.log(this.savingsService.getMySaving);
   }
 
 }
