@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-nav>
+        <ion-buttons start>
+            <button ion-button icon-only>
+              <ion-back-button defaultHref="/savings"></ion-back-button>
+            </button>
+          </ion-buttons>
+      <ion-title>Add Income</ion-title>
+      </ion-nav>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding *ngIf="mySaving.length == 0">
+    <form (ngSubmit)="onAddIncome(f.value)" #f="ngForm">
+      
+      <ion-item >
+        <ion-label position="floating">Type of income</ion-label>
+        <ion-input type="text" name="savings" ngModel required></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Amount</ion-label>
+        <ion-input type="number" name="amount" ngModel placeholder="Numbers only" required></ion-input>
+      </ion-item>
+  
+      <ion-button expand="block" type="submit" [disabled]="!f.valid" >Add</ion-button>
+    </form>
+  
+  
+  </ion-content>
+  <ion-content padding *ngIf="mySaving.length > 0">
+      <form (ngSubmit)="onEditSavings(f.value)" #f="ngForm">
+      <ion-item  *ngFor="let saving of mySaving">
+          <ion-label position="floating">Type of Income</ion-label>
+          <ion-input type="text" name="savings" 
+          ngModel required [(ngModel)]="saving.savings"> </ion-input>
+        </ion-item>
+        <ion-item  *ngFor="let saving of mySaving">
+            <ion-label position="floating">Amount</ion-label>
+            <ion-input type="number" name="amount" ngModel required [(ngModel)]="saving.amount"></ion-input>
+            <ion-input type="hidden" name="Number" ngModel required [(ngModel)]="saving.id"></ion-input>
+          </ion-item>
+        <!-- <ion-item  *ngFor="let saving of mySaving">
+            <ion-label position="floating">Id</ion-label> -->
+
+        <!-- </ion-item> -->
+        <ion-button expand="block" type="submit" [disabled]="!f.valid" >Edit</ion-button>
+      </form>
+  </ion-content>
+  

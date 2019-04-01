@@ -1,41 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { SavingsService } from 'src/services/savings.services';
 import { NavController } from '@ionic/angular';
-import { FormControl, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-savings',
-  templateUrl: './add-savings.page.html',
-  styleUrls: ['./add-savings.page.scss'],
+  selector: 'app-add-income',
+  templateUrl: './add-income.page.html',
+  styleUrls: ['./add-income.page.scss'],
 })
-export class AddSavingsPage implements OnInit {
+export class AddIncomePage implements OnInit {
   mySaving: {savings:String,amount: Number,id?: Number}[] = [];
-
 
   ionViewWillEnter(){
     this.mySaving = this.savingsService.getOneSaving();
-    if(this.mySaving.length >0){
-    console.log(this.mySaving.length);
-    }
-    else{
-      console.log(this.mySaving.length);
-    }
-   }
-  constructor(private savingsService: SavingsService, public navCtrl: NavController) { 
-
   }
+  constructor(private savingsService: SavingsService, public navCtrl: NavController) { }
 
   ngOnInit() {
   }
-  onAddSavings(value:{savings: String,amount: Number}){
+  onAddIncome(value:{savings: String,amount: Number}){
 
     this.savingsService.addSavings(value);
-    this.navCtrl.navigateBack('/savings');
+    this.navCtrl.navigateBack('/income');
   }
 
   onEditSavings(value:{savings: String,amount: Number,id?: Number}){
     this.savingsService.replaceSavings(value);
-    this.navCtrl.navigateBack('/savings');
+    this.navCtrl.navigateBack('/income');
     this.mySaving = [];
     console.log(this.savingsService.getMySaving);
   }
