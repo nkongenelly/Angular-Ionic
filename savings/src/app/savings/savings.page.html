@@ -17,7 +17,7 @@
   </ion-toolbar>
 </ion-header>
   
-<ion-content padding>
+<ion-content padding *ngIf="mySavings.length > 0">
   <ion-item *ngFor = "let saving of mySavings; index as i" >
     <ion-label> {{ saving.savings}}</ion-label>
     <ion-badge color="tertiary" slot="end"> {{ saving.amount }} </ion-badge>
@@ -26,4 +26,8 @@
       color="success" size="small" >Edit</ion-button>
     <ion-button color="danger" size="small" (click)="deleteSaving($i)">Delete</ion-button>
   </ion-item>
+</ion-content>
+
+<ion-content *ngIf="mySavings.length == 0" padding>
+  <ion-text color="tertiary">No savings created. Add savings to see them here.</ion-text>
 </ion-content>
