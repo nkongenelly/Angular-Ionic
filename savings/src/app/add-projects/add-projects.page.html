@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-nav>
+      <ion-buttons start>
+          <button ion-button icon-only>
+            <ion-back-button defaultHref="/projects"></ion-back-button>
+          </button>
+        </ion-buttons>
+    <ion-title>Add Project</ion-title>
+    </ion-nav>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding *ngIf="myProject.length == 0">
+  <form (ngSubmit)="onAddProject(f.value)" #f="ngForm">
+    
+    <ion-item >
+      <ion-label position="floating">Type of savings</ion-label>
+      <ion-input type="text" name="projects" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Amount</ion-label>
+      <ion-input type="number" name="amount" ngModel placeholder="Numbers only" required></ion-input>
+      <!-- <ion-input type="text" name="id" [(ngModel)]="dates" required></ion-input> -->
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Month</ion-label>
+      <ion-input type="text" name="month" ngModel required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="!f.valid" >Add</ion-button>
+  </form>
+
+
+</ion-content>
+<ion-content padding *ngIf="myProject.length > 0">
+    <form (ngSubmit)="onAddProject(f.value)" #f="ngForm">
+    <ion-item  *ngFor="let project of myProject">
+        <ion-label position="floating">Type of projects</ion-label>
+        <ion-input type="text" name="projects" 
+        ngModel required [(ngModel)]="project.projects"> </ion-input>
+      </ion-item>
+      <ion-item  *ngFor="let project of myprojects">
+          <ion-label position="floating">Amount</ion-label>
+          <ion-input type="number" name="amount" ngModel required [(ngModel)]="project.amount"></ion-input>
+          <ion-input type="hidden" name="Number" ngModel required [(ngModel)]="project.id"></ion-input>
+        </ion-item>
+      <ion-item *ngFor="let project of myprojects">
+        <ion-label position="floating">Month</ion-label>
+        <ion-input type="text" name="month" ngModel required [(ngModel)]="project.month"></ion-input>
+      </ion-item>
+      <ion-button expand="block" type="submit" [disabled]="!f.valid" >Edit</ion-button>
+    </form>
+</ion-content>

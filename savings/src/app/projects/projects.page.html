@@ -1,20 +1,29 @@
 <ion-header>
   <ion-toolbar>
-      <ion-nav>
-        <ion-back-button defaultHref="/home" start></ion-back-button>
-        <ion-title>projects</ion-title>
-      </ion-nav>
+    <ion-nav>
+      <ion-buttons start>
+        <button ion-button icon-only>
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </button>
+      </ion-buttons>
+      <ion-buttons right>
+          <button ion-button icon-only (click)="buttonAddProjects()">
+              <ion-icon name="add"></ion-icon>
+          </button>
+      </ion-buttons>
+      <ion-title> My Projects</ion-title>
+      
+    </ion-nav>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <ion-item >
-      <ion-label>{{ projects[2] }}</ion-label>
-      <ion-badge color="tertiary" slot="end"> {{ projects[0] }} </ion-badge>
+    <ion-item *ngFor = "let project of projects; let i = index">
+      <ion-label>{{ project.projects }}</ion-label>
+      <ion-badge color="tertiary" slot="end"> {{ project.amount}} </ion-badge>
       <ion-button 
-        (click)="editSaving(i)"
-        color="success" size="small" >Edit</ion-button>
-      <ion-button color="danger" size="small" (click)="deleteSaving($i)">Delete</ion-button>
+        color="success" size="small" (click)="editProject(i)">Edit</ion-button>
+      <ion-button color="danger" size="small" (click)="deleteProject(project.id)">Delete</ion-button>
     </ion-item>
 
 </ion-content>

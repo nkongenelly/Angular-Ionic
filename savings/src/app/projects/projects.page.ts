@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { NavController, AlertController } from '../../../node_modules/@ionic/angular';
 
 @Component({
   selector: 'app-projects',
@@ -8,15 +9,56 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class ProjectsPage implements OnInit {
   projects: any[];
-  constructor(db: AngularFireDatabase) { 
+  myProject:{projects: String, any: Number, id?: any, month: String}[] = [];
+  ;
+  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public alertCtrl: AlertController) { 
     db.list('/projects').valueChanges()
         .subscribe(projects => {
+          
             this.projects = projects;
-            console.log(this.projects);
+            console.log(projects);
+            for(let project of projects){
+              console.log(project);
+            }
         });
   }
 
   ngOnInit() {
   }
+  buttonAddProjects (){
+    this.navCtrl.navigateForward('/add-projects');
+    
+  }
+  editProject(id){
+    this.myProject = [];
+    this.myProject = this.projects[id];
+    console.log('this'+this.myProject);
+    this.navCtrl.navigateForward('/add-projects');
+  }
+  async deleteProject(i){
+    let alert = await this.alertCtrl.create({
+      header: 'Confirm delete user',
+      message: 'Are you sure you want to permanently delete this item?',
+      buttons: [
+          {
+              text: 'No',
+              handler: () => {
+                  console.log('Cancel clicked');
+              }
+          },
+          {
+              text: 'Yes',
+              handler: () => {
+                console.log(i);
+              this.db.list('/projects').remove(i);
+              }
+          }
+      ]
+  })
+  
+  
+  await alert.present();
+   
+}
 
 }

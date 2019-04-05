@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'add-offering', loadChildren: './add-offering/add-offering.module#AddOfferingPageModule' },
   { path: 'edit-savings', loadChildren: './edit-savings/edit-savings.module#EditSavingsPageModule' },
   { path: 'add-income', loadChildren: './add-income/add-income.module#AddIncomePageModule' },
+  { path: 'add-projects', loadChildren: './add-projects/add-projects.module#AddProjectsPageModule' },
 ];
 
 @NgModule({
