@@ -17,18 +17,14 @@ export class AddProjectsPage implements OnInit {
 
   ionViewWillEnter(){
    this.db.list('/projects').valueChanges().subscribe(projects => {
-  //   projects.forEach(action => {
-  //     const value = action.payload.val();
-  //     const id = action.payload.key;
-  //     this.projects.push(id, value);
-  //   });
-
       this.projects = projects;
       console.log(this.projects);
       for(let project of projects){
         console.log(project);
       }
    });
+   this.myProject = this.savingsService.getEditableProject();
+   console.log('length'+this.myProject.length);
 }
 
 // ngAfterViewChecked()
@@ -36,6 +32,7 @@ export class AddProjectsPage implements OnInit {
 //   console.log(Date.now());
 //    this.dates = Date.now();
 // }
+
 
   constructor(public db: AngularFireDatabase, public navCtrl: NavController, private savingsService: SavingsService) { }
 
@@ -49,8 +46,20 @@ export class AddProjectsPage implements OnInit {
       console.log(one.key); 
   }
     });
-    
+    //this.savingsService.addMenuService(value);
     this.navCtrl.navigateBack('/projects');
+  }
+
+  onEditProject(value){
+    this.db.object('/projects/'+value.id).update({
+      projects:value.projects,
+      amount:value.amount,
+      id:value.id,
+      month:value.month
+    });
+    this.myProject = [];
+    this.navCtrl.navigateBack('/projects');
+    
   }
 
   

@@ -3,6 +3,9 @@ export class SavingsService{
     private mySavings: {savings:String,amount: Number}[] = [];
     private mySaving: {savings:String,amount: Number,id?: Number}[] = [];
 
+    private myProjects=[];
+    private myProject: {savings:String,amount: Number|String,id?: Number|String, month: String}[] = [];
+
     addSavings(mySaving: {savings:String,amount: Number}){
         this.mySavings.push(mySaving);
     }
@@ -35,6 +38,25 @@ export class SavingsService{
         console.log(editable);
         return editable;
 
+    }
+    //Firebase
+    allProjects(projects){
+       this.myProjects = projects;
+        //return this.myProjects;
+    }
+
+    editMyProjects(id){
+    this.myProject = [];
+   // alert(this.myProjects);
+         for(let project of this.myProjects){
+            if(this.myProjects.indexOf(project)== id){
+                this.myProject.push(this.myProjects[id]); 
+                return this.myProject;
+            }
+         }
+    }
+    getEditableProject(){
+        return this.myProject;
     }
 
 }

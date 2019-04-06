@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { NavController, AlertController } from '../../../node_modules/@ionic/angular';
+import { SavingsService } from '../../services/savings.services';
 
 @Component({
   selector: 'app-projects',
@@ -11,7 +12,7 @@ export class ProjectsPage implements OnInit {
   projects: any[];
   myProject:{projects: String, any: Number, id?: any, month: String}[] = [];
   ;
-  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public alertCtrl: AlertController) { 
+  constructor(public db: AngularFireDatabase, public navCtrl: NavController, public alertCtrl: AlertController, private savingsService: SavingsService) { 
     db.list('/projects').valueChanges()
         .subscribe(projects => {
           
@@ -21,6 +22,7 @@ export class ProjectsPage implements OnInit {
               console.log(project);
             }
         });
+        this.savingsService.allProjects(this.projects);
   }
 
   ngOnInit() {
@@ -30,8 +32,10 @@ export class ProjectsPage implements OnInit {
     
   }
   editProject(id){
-    this.myProject = [];
-    this.myProject = this.projects[id];
+    this.savingsService.allProjects(this.projects);
+    this.savingsService.editMyProjects(id);
+    // this.myProject = [];
+    // this.myProject = this.projects[id];
     console.log('this'+this.myProject);
     this.navCtrl.navigateForward('/add-projects');
   }
