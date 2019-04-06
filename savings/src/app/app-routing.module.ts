@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'edit-savings', loadChildren: './edit-savings/edit-savings.module#EditSavingsPageModule' },
   { path: 'add-income', loadChildren: './add-income/add-income.module#AddIncomePageModule' },
   { path: 'add-projects', loadChildren: './add-projects/add-projects.module#AddProjectsPageModule' },
+  //{ path: '/page/offering/:id', loadChildren: './pages/offering/offering.module#OfferingPageModule' },
 ];
 
 @NgModule({

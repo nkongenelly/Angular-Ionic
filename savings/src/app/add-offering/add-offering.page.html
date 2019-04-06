@@ -11,6 +11,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <form [formGroup]="createOfferingForm" (submit)="createOffering()">
+    <ion-item>
+      <ion-label position="floating">Type of offering</ion-label>
+      <ion-input formControlName="offeringName" type="text" 
+        placeholder="Name of offering">
+      </ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Amount</ion-label>
+      <ion-input formControlName="amountName" type="number" 
+        placeholder="Numbers only">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Month</ion-label>
+      <ion-input formControlName="monthName" type="text" 
+        placeholder="Month">
+      </ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" 
+      [disabled]="!createOfferingForm.valid">
+      Add
+    </ion-button>
+  </form>
 </ion-content>

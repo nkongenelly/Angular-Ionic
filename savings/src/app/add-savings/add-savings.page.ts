@@ -27,8 +27,10 @@ export class AddSavingsPage implements OnInit {
 
   ngOnInit() {
   }
-  onAddSavings(value:{savings: String,amount: Number}){
-
+  onAddSavings(value:{savings: String,amount: Number,month: String}){
+    let menu = "savings";
+    //this.firebaseService.onAdd(value,menu);
+    //using Service to store
     this.savingsService.addSavings(value);
     this.navCtrl.navigateBack('/savings');
   }

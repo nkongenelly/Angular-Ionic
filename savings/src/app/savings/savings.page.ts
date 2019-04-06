@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { SavingsService } from 'src/services/savings.services';
+import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
 
 @Component({
   selector: 'app-savings',
@@ -10,7 +11,7 @@ import { SavingsService } from 'src/services/savings.services';
 export class SavingsPage implements OnInit {
   mySavings: {savings: String, amount: Number}[] = [];
 
-  constructor(public navCtrl: NavController, private savingsService: SavingsService, public alertCtrl: AlertController) {
+  constructor(public db: AngularFireDatabase, public navCtrl: NavController, private savingsService: SavingsService, public alertCtrl: AlertController) {
 
    }
    ionViewWillEnter(){

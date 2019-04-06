@@ -18,6 +18,8 @@ import { AngularFireModule } from 'angularfire2';
 //import { environment } from 'src/environments/environment.prod';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFirestoreModule
   ],
   providers: [
     StatusBar,

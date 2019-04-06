@@ -42,9 +42,9 @@ export class AddProjectsPage implements OnInit {
     this.db.list('/projects').push(value).then((item) => { 
       this.db.object('/projects/'+item.key).update({ id: item.key });
       console.log(item.key); 
-  for(let one of this.projects ){
-      console.log(one.key); 
-  }
+      for(let one of this.projects ){
+          console.log(one.key); 
+      }
     });
     //this.savingsService.addMenuService(value);
     this.navCtrl.navigateBack('/projects');
