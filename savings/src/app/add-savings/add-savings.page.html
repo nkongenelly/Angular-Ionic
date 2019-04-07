@@ -24,6 +24,11 @@
       <ion-input type="number" name="amount" ngModel placeholder="Numbers only" required></ion-input>
     </ion-item>
 
+    <ion-item>
+        <ion-label position="floating">Month</ion-label>
+        <ion-input type="text" name="month" ngModel placeholder="Month" required></ion-input>
+      </ion-item>
+
     <ion-button expand="block" type="submit" [disabled]="!f.valid" >Add</ion-button>
   </form>
 
@@ -31,7 +36,7 @@
 </ion-content>
 <ion-content padding *ngIf="mySaving.length > 0">
     <form (ngSubmit)="onEditSavings(f.value)" #f="ngForm">
-    <ion-item  *ngFor="let saving of mySaving">
+      <ion-item  *ngFor="let saving of mySaving">
         <ion-label position="floating">Type of savings</ion-label>
         <ion-input type="text" name="savings" 
         ngModel required [(ngModel)]="saving.savings"> </ion-input>
@@ -41,10 +46,11 @@
           <ion-input type="number" name="amount" ngModel required [(ngModel)]="saving.amount"></ion-input>
           <ion-input type="hidden" name="Number" ngModel required [(ngModel)]="saving.id"></ion-input>
         </ion-item>
-      <!-- <ion-item  *ngFor="let saving of mySaving">
-          <ion-label position="floating">Id</ion-label> -->
-          
-      <!-- </ion-item> -->
+        <ion-item  *ngFor="let saving of mySaving">
+            <ion-label position="floating">Month</ion-label>
+            <ion-input type="text" name="month" 
+            ngModel required [(ngModel)]="saving.month"> </ion-input>
+        </ion-item>
       <ion-button expand="block" type="submit" [disabled]="!f.valid" >Edit</ion-button>
     </form>
 </ion-content>

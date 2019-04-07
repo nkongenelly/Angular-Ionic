@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { SavingsService } from 'src/services/savings.services';
 import { AngularFireDatabase } from '../../../node_modules/angularfire2/database';
+import { FirebaseService } from '../../services/firebase.services';
 
 @Component({
   selector: 'app-savings',
@@ -9,13 +10,18 @@ import { AngularFireDatabase } from '../../../node_modules/angularfire2/database
   styleUrls: ['./savings.page.scss'],
 })
 export class SavingsPage implements OnInit {
-  mySavings: {savings: String, amount: Number}[] = [];
+  mySavings: any[];
 
-  constructor(public db: AngularFireDatabase, public navCtrl: NavController, private savingsService: SavingsService, public alertCtrl: AlertController) {
-
+  constructor(private firebaseService: FirebaseService, public db: AngularFireDatabase, public navCtrl: NavController, private savingsService: SavingsService, public alertCtrl: AlertController) {
+    db.list('/savings').valueChanges()
+    .subscribe(savings =>
+      {
+           this.mySavings = savings;
+    });
+    console.log('length'+this.mySavings);
    }
    ionViewWillEnter(){
-    this.mySavings = this.savingsService.getMySaving();
+    
    }
 
   ngOnInit() {
@@ -25,37 +31,18 @@ export class SavingsPage implements OnInit {
     this.navCtrl.navigateForward('/add-savings');
     
   }
+
   editSaving(indexes){
-  let editable:{savings:String,amount: Number,id?: Number} = this.savingsService.editMySavings(indexes);
+    let menu = "savings";
+  let editable= this.firebaseService.editMenu(indexes, menu,this.mySavings);
   console.log(editable);
-  this.savingsService.addSaving(editable);
     this.navCtrl.navigateForward('/add-savings');
   }
-async deleteSaving(index){
-  let alert = await this.alertCtrl.create({
-    header: 'Confirm delete user',
-    message: 'Are you sure you want to permanently delete this item?',
-    buttons: [
-        {
-            text: 'No',
-            handler: () => {
-                console.log('Cancel clicked');
-            }
-        },
-        {
-            text: 'Yes',
-            handler: () => {
-              this.mySavings.splice(index, 1);
-            }
-        }
-    ]
-})
-
-
-await alert.present();
+ deleteSaving(index){
+   let menu = "savings";
+    this.firebaseService.onDelete(index,menu);
 
 }
- 
 
 
 }

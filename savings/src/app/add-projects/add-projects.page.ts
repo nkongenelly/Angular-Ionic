@@ -51,6 +51,7 @@ export class AddProjectsPage implements OnInit {
   }
 
   onEditProject(value){
+   
     this.db.object('/projects/'+value.id).update({
       projects:value.projects,
       amount:value.amount,

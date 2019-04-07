@@ -32,16 +32,16 @@ export class AddOfferingPage implements OnInit {
   async createOffering(){
     const loading = await this.loadingCtrl.create();
 
-    const offering = this.createOfferingForm.value.offeringName;
-    const amount = this.createOfferingForm.value.amountName;
-    const month = this.createOfferingForm.value.monthName;
-
+    let offering = this.createOfferingForm.value.offeringName;
+    let amount = this.createOfferingForm.value.amountName;
+    let month = this.createOfferingForm.value.monthName;
+console.log(offering,amount,month);
     this.firestoreService
       .createOffering(offering, amount, month)
       .then(
         () => {
           loading.dismiss().then(() => {
-            this.router.navigateByUrl('');
+            this.router.navigateByUrl('/offering');
           });
         },
         error => {

@@ -19,6 +19,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { FirebaseService } from '../services/firebase.services';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SavingsService
+    SavingsService,
+    FirebaseService
   ],
   bootstrap: [AppComponent]
 })

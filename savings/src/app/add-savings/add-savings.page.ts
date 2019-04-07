@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SavingsService } from 'src/services/savings.services';
 import { NavController } from '@ionic/angular';
 import { FormControl, Validators } from '@angular/forms';
+import { FirebaseService } from '../../services/firebase.services';
 
 @Component({
   selector: 'app-add-savings',
@@ -20,26 +21,30 @@ export class AddSavingsPage implements OnInit {
     else{
       console.log(this.mySaving.length);
     }
-   }
-  constructor(private savingsService: SavingsService, public navCtrl: NavController) { 
+    this.mySaving = this.firebaseService.replaceOneMenu();
+     }
+  constructor(private savingsService: SavingsService, public navCtrl: NavController,private firebaseService: FirebaseService) { 
 
   }
 
   ngOnInit() {
   }
   onAddSavings(value:{savings: String,amount: Number,month: String}){
-    let menu = "savings";
+    let menu:String = "savings";
     //this.firebaseService.onAdd(value,menu);
     //using Service to store
-    this.savingsService.addSavings(value);
+    this.firebaseService.onAdd(value,menu);
     this.navCtrl.navigateBack('/savings');
   }
 
-  onEditSavings(value:{savings: String,amount: Number,id?: Number}){
-    this.savingsService.replaceSavings(value);
-    this.navCtrl.navigateBack('/savings');
+  onEditSavings(value:{savings: String,amount: Number,id?: String,month: String}){
+    console.log(value);
+    let menu = "savings";
+    this.firebaseService.onEdit(value,menu);
+    //this.savingsService.replaceSavings(value);
     this.mySaving = [];
-    console.log(this.savingsService.getMySaving);
+    this.navCtrl.navigateBack('/savings');
+   
   }
 
 }
