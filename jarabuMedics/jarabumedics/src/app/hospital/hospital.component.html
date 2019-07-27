@@ -15,14 +15,16 @@
           <ion-input placeholder="Enter Name of hospital" [(ngModel)]="hospitalName"></ion-input>
         </ion-item>
       </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col>
         <ion-item>
-          <ion-input placeholder="Enter hospital contact" [(ngModel)]="hospitalContact"></ion-input>
+          <ion-input placeholder="Contacts" [(ngModel)]="hospitalContact"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
         <ion-item>
-          <ion-input placeholder="Enter hospital Address" [(ngModel)]="hospitalAddress"></ion-input>
+          <ion-input placeholder="Address" [(ngModel)]="hospitalAddress"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -83,7 +85,7 @@
               <ion-input type="text" [(ngModel)]="item.EditName"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label><strong>Age</strong></ion-label>
+              <ion-label><strong>Contact</strong></ion-label>
               <ion-input type="text" [(ngModel)]="item.EditContact"></ion-input>
         </ion-item>
         <ion-item>
