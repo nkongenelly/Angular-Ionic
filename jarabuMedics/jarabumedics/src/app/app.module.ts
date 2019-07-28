@@ -18,6 +18,12 @@ import { AuthenticateService } from './authenticate.service';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HospitalComponent } from './hospital/hospital.component';
 import { FormsModule } from '@angular/forms';
+
+import * as firebase from 'firebase';
+
+firebase.initializeApp(environment.firebase);
+
+
 @NgModule({
   declarations: [AppComponent,
     HospitalComponent
