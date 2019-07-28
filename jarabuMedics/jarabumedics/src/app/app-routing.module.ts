@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'hospital', component: HospitalComponent },
   { path: '', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
+  { path: 'other-registrtaion', loadChildren: './other-registrtaion/other-registrtaion.module#OtherRegistrtaionPageModule' },
 
 ];
 

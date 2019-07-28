@@ -1,5 +1,7 @@
 {
   "name": "jarabumedics",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -4,11 +4,11 @@ import { AuthenticateService } from '../authenticate.service';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-other-registrtaion',
+  templateUrl: './other-registrtaion.page.html',
+  styleUrls: ['./other-registrtaion.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class OtherRegistrtaionPage implements OnInit {
 
 
   validations_form: FormGroup;
@@ -23,7 +23,10 @@ export class RegisterPage implements OnInit {
    'password': [
      { type: 'required', message: 'Password is required.' },
      { type: 'minlength', message: 'Password must be at least 5 characters long.' }
-   ]
+   ],
+   'category': [
+    { type: 'required', message: 'Password is required.' }
+  ]
  };
 
   constructor(
@@ -40,6 +43,9 @@ export class RegisterPage implements OnInit {
       ])),
       password: new FormControl('', Validators.compose([
         Validators.minLength(5),
+        Validators.required
+      ])),
+      category: new FormControl('', Validators.compose([
         Validators.required
       ])),
     });
@@ -60,10 +66,6 @@ export class RegisterPage implements OnInit {
 
   goLoginPage(){
     this.navCtrl.navigateBack('');
-  }
-
-  otherRegistrtaion(){
-    this.navCtrl.navigateForward('/other-registrtaion');
   }
 
 

@@ -23,7 +23,6 @@ import * as firebase from 'firebase';
 
 firebase.initializeApp(environment.firebase);
 
-
 @NgModule({
   declarations: [AppComponent,
     HospitalComponent

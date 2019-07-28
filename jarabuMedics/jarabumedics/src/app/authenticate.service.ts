@@ -1,18 +1,24 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
+import { AngularFirestore } from '@angular/fire/firestore';
  
 @Injectable()
 export class AuthenticateService {
  
-  constructor(){}
+  constructor(
+    private firestore: AngularFirestore
+  ){}
  
+  //register with email & password then add entry to users collection
   registerUser(value){
-   return new Promise<any>((resolve, reject) => {
+    new Promise<any>((resolve, reject) => {
      firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
      .then(
        res => resolve(res),
        err => reject(err))
    })
+   alert(value.category);
+   return this.firestore.collection('users').add({email:value.email,category:value.category==null?'patient':value.category});
   }
  
   loginUser(value){

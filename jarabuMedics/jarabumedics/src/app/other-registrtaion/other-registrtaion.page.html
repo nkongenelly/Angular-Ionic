@@ -1,6 +1,6 @@
 <ion-header>
     <ion-toolbar color="primary">
-      <ion-title>Patient Registration</ion-title>
+      <ion-title>Register</ion-title>
     </ion-toolbar>
   </ion-header>
   
@@ -30,12 +30,26 @@
           </div>
         </ng-container>
       </div>
-  
+      <ion-item>
+          <ion-label position="floating" color="primary">Category</ion-label>
+          <ion-select value="facility" okText="Okay" cancelText="Dismiss" formControlName="category" class="form-controll" required>
+            <ion-select-option value="facility">Facility</ion-select-option>
+            <ion-select-option value="pharmaceutical">Pharmaceutical</ion-select-option>
+            <ion-select-option value="doctor">Doctor</ion-select-option>
+            <ion-select-option value="secondOpinionFacility">Second Opinion facility</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.category">
+              <div class="error-message" *ngIf="validations_form.get('category').hasError(validation.type) && (validations_form.get('category').dirty || validations_form.get('category').touched)">
+                {{ validation.message }}
+              </div>
+            </ng-container>
+          </div>
       
       <ion-button  class="submit-btn" type="submit"  [disabled]="!validations_form.valid">Register</ion-button>
       <label class="error-message">{{errorMessage}}</label>
       <label class="success-message">{{successMessage}}</label>
     </form>
     <p class="go-to-login">Already have an account? <a (click)="goLoginPage()">Try to Log In.</a></p>
-    <p class="go-to-login"><a (click)="otherRegistrtaion()">To register under different category? .</a></p>
   </ion-content>
