@@ -25,7 +25,7 @@ export class OtherRegistrtaionPage implements OnInit {
      { type: 'minlength', message: 'Password must be at least 5 characters long.' }
    ],
    'category': [
-    { type: 'required', message: 'Password is required.' }
+    { type: 'required', message: 'Category is required.' }
   ]
  };
 

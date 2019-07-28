@@ -17,7 +17,6 @@ export class AuthenticateService {
        res => resolve(res),
        err => reject(err))
    })
-   alert(value.category);
    return this.firestore.collection('users').add({email:value.email,category:value.category==null?'patient':value.category});
   }
  
@@ -46,5 +45,8 @@ export class AuthenticateService {
  
   userDetails(){
     return firebase.auth().currentUser;
+  }
+  read_Users() {
+    return this.firestore.collection('users').snapshotChanges();
   }
 }
