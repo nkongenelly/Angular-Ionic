@@ -6,18 +6,17 @@ import { StatusBar } from '../../../node_modules/@ionic-native/status-bar/ngx';
 import { SplashScreen } from '../../../node_modules/@ionic-native/splash-screen/ngx';
 
 @Component({
-  selector: 'app-hospital',
-  templateUrl: './hospital.component.html',
-  styleUrls: ['./hospital.component.scss'],
+  selector: 'app-hospitals',
+  templateUrl: './hospitals.page.html',
+  styleUrls: ['./hospitals.page.scss'],
 })
-export class HospitalComponent implements OnInit {
-
+export class HospitalsPage implements OnInit {
   rootPage:any = LoginPage;
   hospitals: any;
   hospitalName: string;
   hospitalContact: number;
   hospitalAddress: string;
- 
+
   constructor(
     private crudService: CrudService,
     private menu: MenuController,
