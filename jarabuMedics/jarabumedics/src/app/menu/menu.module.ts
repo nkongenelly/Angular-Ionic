@@ -10,21 +10,7 @@ import { MenuPage } from './menu.page';
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full'
-  },
-  {
-    path: '',
-    component: MenuPage,
-    children: [
-      {
-        path: 'register',
-        loadChildren: '../register/register.module#RegisterageModule'
-      },
-      {
-        path: 'hospital',
-        loadChildren: '../hospital/hospital.module#HospitalPageModule'
-      }
-    ]
+    component: MenuPage
   }
 ];
 

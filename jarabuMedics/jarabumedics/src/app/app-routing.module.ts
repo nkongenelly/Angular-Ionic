@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'other-registrtaion', loadChildren: './other-registrtaion/other-registrtaion.module#OtherRegistrtaionPageModule' },
   { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
   { path: 'hospital', loadChildren: './hospitals/hospitals.module#HospitalsPageModule' },
+  { path: 'menu', loadChildren: './menu/menu.module#MenuPageModule' },
 
 ];
 

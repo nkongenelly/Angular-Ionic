@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../authenticate.service';
 import { CrudService } from '../crud.service';
-import { read } from 'fs';
  
 @Component({
   selector: 'app-login',
