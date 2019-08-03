@@ -14,6 +14,10 @@ const routes: Routes = [
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule' },
   { path: 'contacts', loadChildren: './contacts/contacts.module#ContactsPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'patients', loadChildren: './patients/patients.module#PatientsPageModule' },
+  { path: 'pharmaceuticals', loadChildren: './pharmaceuticals/pharmaceuticals.module#PharmaceuticalsPageModule' },
+  { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsPageModule' },
+  { path: 'secondopinionfacility', loadChildren: './secondopinionfacility/secondopinionfacility.module#SecondopinionfacilityPageModule' },
 
 ];
 

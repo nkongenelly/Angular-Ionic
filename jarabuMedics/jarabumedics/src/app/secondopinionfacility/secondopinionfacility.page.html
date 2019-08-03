@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>2nd Opinion Facility</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+      <ion-grid fixed>
+        <!-- Name picked from the signed in details -->
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-input placeholder="Name" [(ngModel)]="patientName"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-input placeholder="Email" [(ngModel)]="patientEmail"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-input placeholder="Contact" [(ngModel)]="patientContact"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col>
+                <ion-item>
+                  <ion-input placeholder="Symptoms" [(ngModel)]="patientSymptoms"></ion-input>
+                </ion-item>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-input placeholder="Select hospital" [(ngModel)]="patientHospital"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-input placeholder="Choose doctor" [(ngModel)]="patientDoctor"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <!-- submit -->
+          <ion-row>
+            <ion-col text-center>
+              <ion-button (click)="CreateRecord()" [disabled]="!patientName || !patientEmail || !patientContact || !patientSymptoms || !patientHospital || !patientDoctor">
+                <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+                &nbsp;Submit
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+  </ion-content>
+  <ion-header>
+  <ion-toolbar>
+    <ion-title>secondopinionfacility</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+</ion-content>

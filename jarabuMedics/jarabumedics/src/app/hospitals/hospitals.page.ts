@@ -16,6 +16,7 @@ export class HospitalsPage implements OnInit {
   hospitalName: string;
   hospitalContact: number;
   hospitalAddress: string;
+  b:number = 2;
 
   constructor(
     private crudService: CrudService,
@@ -32,7 +33,7 @@ export class HospitalsPage implements OnInit {
   }
  
   ngOnInit() {
-    this.crudService.read_Hospital().subscribe(data => {
+    this.crudService.read_Hospital(this.b).subscribe(data => {
  
       this.hospitals = data.map(e => {
         return {
@@ -58,7 +59,8 @@ export class HospitalsPage implements OnInit {
     record['Name'] = this.hospitalName;
     record['Contact'] = this.hospitalContact;
     record['Address'] = this.hospitalAddress;
-    this.crudService.create_NewHospital(record).then(resp => {
+
+    this.crudService.create_NewHospital(record,this.b).then(resp => {
       this.hospitalName = "";
       this.hospitalContact = undefined;
       this.hospitalAddress = "";
@@ -70,7 +72,7 @@ export class HospitalsPage implements OnInit {
   }
  
   RemoveRecord(rowID) {
-    this.crudService.delete_Hospital(rowID);
+    this.crudService.delete_Hospital(rowID,this.b);
   }
  
   EditRecord(record) {
@@ -85,7 +87,7 @@ export class HospitalsPage implements OnInit {
     record['Name'] = recordRow.EditName;
     record['Contact'] = recordRow.EditContact;
     record['Address'] = recordRow.EditAddress;
-    this.crudService.update_Hospital(recordRow.id, record);
+    this.crudService.update_Hospital(recordRow.id, record,this.b);
     recordRow.isEdit = false;
   }
  

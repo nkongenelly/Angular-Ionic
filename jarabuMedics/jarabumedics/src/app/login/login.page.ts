@@ -15,9 +15,9 @@ export class LoginPage implements OnInit {
   errorMessage: string = '';
   users: any;
   usersEmail: string;
-  usersCategory: string;
-  dashboard:string[] = ['/hospital','/patients','/pharmaceuticals','/doctor','/secondOpinionFacility'];  
-  readCategory:string[] = ['/facility','/patients','/pharmaceutical','/doctor','/secondOpinionFacility'];  
+  usersCategory: string[] = [];
+  dashboard:string[] = ['/hospital','/patients','/pharmaceuticals','/doctors','/secondopinionfacility'];  
+  readCategory:string[] = ['facility','patient','pharmaceutical','doctor','secondOpinionFacility'];  
  
   constructor(
  
@@ -74,19 +74,20 @@ export class LoginPage implements OnInit {
         //get category where email is the signed in email
         for(let user in this.users){
           if(this.users[user].Email == value.email){
-            this.usersCategory = this.users[user].Category;
+            this.usersCategory[0] = this.users[user].Category;
           }
         }
 //open the respective dashboard dynamically
         for(let x = 0; x<this.readCategory.length; x++){
-            if(this.usersCategory == this.readCategory[x]){
+            if(this.usersCategory[0] == this.readCategory[x]){
+              alert(this.usersCategory[0]);
+              alert(this.dashboard[x]);
               this.navCtrl.navigateForward(this.dashboard[x]);
             }
         }
-        
    
       });
-      this.navCtrl.navigateForward('/hospital');
+      //this.navCtrl.navigateForward('/hospital');
     }, err => {
       this.errorMessage = err.message;
     })
