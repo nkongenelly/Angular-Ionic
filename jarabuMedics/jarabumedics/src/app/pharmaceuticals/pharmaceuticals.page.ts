@@ -41,6 +41,7 @@ export class PharmaceuticalsPage implements OnInit {
   }
 
   ngOnInit() {
+    // alert(this.patient);
      //find if the logged in user has rights to right or just read i.e this.isRegistering['name'] = true means has rights to write
      if(this.isRegistering['dashboardPage'] != '/patients'){
       this.showRegisteringForm = this.isRegistering['name'];
