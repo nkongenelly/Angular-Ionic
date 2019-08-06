@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthenticateService } from '../authenticate.service';
 import { NavController } from '@ionic/angular';
+import { LoginPage } from '../login/login.page';
+import { Router, NavigationExtras } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-other-registrtaion',
@@ -14,7 +16,8 @@ export class OtherRegistrtaionPage implements OnInit {
   validations_form: FormGroup;
   errorMessage: string = '';
   successMessage: string = '';
-
+  isRegistering;
+  
   validation_messages = {
    'email': [
      { type: 'required', message: 'Email is required.' },
@@ -32,10 +35,13 @@ export class OtherRegistrtaionPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private authService: AuthenticateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public router: Router
   ) {}
 
   ngOnInit(){
+    this.isRegistering = true;
+    // alert(this.isRegistering)
     this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -54,18 +60,20 @@ export class OtherRegistrtaionPage implements OnInit {
   tryRegister(value){
     this.authService.registerUser(value)
      .then(res => {
-       console.log(res);
+      console.log("RES = "+res);
        this.errorMessage = "";
        this.successMessage = "Your account has been created. Please log in.";
      }, err => {
-       console.log(err);
+      alert(err.message);
        this.errorMessage = err.message;
        this.successMessage = "";
      })
   }
 
   goLoginPage(){
-    this.navCtrl.navigateBack('');
+    // this.navCtrl.navigateBack('');
+    //go to login page and pass parameter saying is registering so that only form appears and doesn't display the other hospitals
+    this.router.navigate(['/login']);
   }
 
 

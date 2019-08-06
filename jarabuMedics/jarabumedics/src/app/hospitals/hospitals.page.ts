@@ -4,6 +4,7 @@ import { MenuController, Platform } from '@ionic/angular';
 import { LoginPage } from '../login/login.page';
 import { StatusBar } from '../../../node_modules/@ionic-native/status-bar/ngx';
 import { SplashScreen } from '../../../node_modules/@ionic-native/splash-screen/ngx';
+import { ActivatedRoute } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-hospitals',
@@ -17,12 +18,25 @@ export class HospitalsPage implements OnInit {
   hospitalContact: number;
   hospitalAddress: string;
   b:number = 2;
+  isRegistering;
+  showRegisteringForm;
 
   constructor(
     private crudService: CrudService,
     private menu: MenuController,
+    public activatedRoute: ActivatedRoute,
     platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen
   ) { 
+     
+   // get the query params if it comes from registering or else set query params if directly loggin in
+    this.activatedRoute.queryParams.subscribe((res)=>{
+      if(JSON.parse(res.value) != null){
+        // console.log(JSON.parse(res.value));
+        this.isRegistering = JSON.parse(res.value);
+        // alert(JSON.parse(res.value[0][1]));
+      }
+    });
+
     this.menu.enable(true, 'menu');
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -30,9 +44,15 @@ export class HospitalsPage implements OnInit {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+
   }
  
   ngOnInit() {
+   //find if the logged in user has rights to right or just read i.e this.isRegistering['name'] = true means has rights to write
+   if(this.isRegistering['dashboardPage'] != '/patients'){
+    this.showRegisteringForm = this.isRegistering['name'];
+    }
+  
     this.crudService.read_Hospital(this.b).subscribe(data => {
  
       this.hospitals = data.map(e => {
@@ -44,7 +64,7 @@ export class HospitalsPage implements OnInit {
           Address: e.payload.doc.data()['Address'],
         };
       })
-      console.log(this.hospitals);
+      // console.log(this.hospitals);
  
     });
   }
@@ -64,10 +84,10 @@ export class HospitalsPage implements OnInit {
       this.hospitalName = "";
       this.hospitalContact = undefined;
       this.hospitalAddress = "";
-      console.log(resp);
+      // console.log(resp);
     })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
  

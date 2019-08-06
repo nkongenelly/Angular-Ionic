@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { NavController } from '@ionic/angular';
 import { AuthenticateService } from '../authenticate.service';
 import { CrudService } from '../crud.service';
+import { ActivatedRoute, Router } from '../../../node_modules/@angular/router';
  
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { CrudService } from '../crud.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
- 
+
   validations_form: FormGroup;
   errorMessage: string = '';
   users: any;
@@ -18,17 +19,18 @@ export class LoginPage implements OnInit {
   usersCategory: string[] = [];
   dashboard:string[] = ['/hospital','/patients','/pharmaceuticals','/doctors','/secondopinionfacility'];  
   readCategory:string[] = ['facility','patient','pharmaceutical','doctor','secondOpinionFacility'];  
- 
+  isRegistering = {name:true};
   constructor(
  
     private navCtrl: NavController,
     private authService: AuthenticateService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    public router: Router
  
-  ) { }
+  ) {}
  
   ngOnInit() {
- 
+    //get if one is registering to get the passed data or if loggin in, then define that the user should see the form to add 
     this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
@@ -80,9 +82,12 @@ export class LoginPage implements OnInit {
 //open the respective dashboard dynamically
         for(let x = 0; x<this.readCategory.length; x++){
             if(this.usersCategory[0] == this.readCategory[x]){
-              alert(this.usersCategory[0]);
-              alert(this.dashboard[x]);
-              this.navCtrl.navigateForward(this.dashboard[x]);
+              this.isRegistering['dashboardPage'] = this.dashboard[x];
+              this.router.navigate([this.dashboard[x]],{
+                queryParams: {
+                  value : JSON.stringify(this.isRegistering || null)
+                 },
+                });
             }
         }
    

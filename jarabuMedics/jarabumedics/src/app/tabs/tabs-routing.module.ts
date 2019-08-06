@@ -13,7 +13,6 @@ const routes: Routes = [
     component: TabsPage,
     children:
       [
-        {path: 'home',loadChildren: './home/home.module#HomePageModule'},
         {path: 'menu',loadChildren: './menu/menu.module#MenuPageModule'},
         {path: 'contacts',loadChildren: './contacts/contacts.module#ContactsPageModule'},
         {path: '',loadChildren: './menu/menu.module#MenuPageModule'},
@@ -21,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: '/tabs/menu',
     pathMatch: 'full'
   }
 ];
