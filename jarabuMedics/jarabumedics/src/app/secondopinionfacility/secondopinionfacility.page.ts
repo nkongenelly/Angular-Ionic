@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { TabsPage } from '../tabs/tabs.page';
 import { CrudService } from '../crud.service';
 import { MenuController } from '@ionic/angular';
+import { ActivatedRoute } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-secondopinionfacility',
@@ -20,11 +21,14 @@ export class SecondopinionfacilityPage implements OnInit {
   patientHospital: string;
   patientDoctor: string;
   b : number = 5;
+  isRegistering;
+  showRegisteringForm;
  
   constructor(
     private navCtrl: NavController,
     private crudService: CrudService,
     private menu: MenuController,
+     public activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {

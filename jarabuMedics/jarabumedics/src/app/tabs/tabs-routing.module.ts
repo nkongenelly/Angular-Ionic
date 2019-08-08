@@ -15,7 +15,7 @@ const routes: Routes = [
       [
         {path: 'menu',loadChildren: './menu/menu.module#MenuPageModule'},
         {path: 'contacts',loadChildren: './contacts/contacts.module#ContactsPageModule'},
-        {path: '',loadChildren: './menu/menu.module#MenuPageModule'},
+        {path: '',loadChildren: './tabs/menu.module#MenuPageModule'},
       ]
   },
   {

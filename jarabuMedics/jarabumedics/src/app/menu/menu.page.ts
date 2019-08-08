@@ -12,7 +12,9 @@ export class MenuPage implements OnInit {
 
   constructor(
     public router: Router
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
   }
