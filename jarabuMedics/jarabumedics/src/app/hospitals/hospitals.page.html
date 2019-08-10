@@ -7,7 +7,7 @@
         </ion-buttons>    
         <ion-buttons slot="end">
             <ion-menu-button autoHide="false"></ion-menu-button>
-          </ion-buttons>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
  
@@ -27,9 +27,18 @@
           <ion-input placeholder="Contacts" [(ngModel)]="hospitalContact"></ion-input>
         </ion-item>
       </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col>
         <ion-item>
           <ion-input placeholder="Address" [(ngModel)]="hospitalAddress"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-input placeholder="lat & longitude" [(ngModel)]="hospitalLocation"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>

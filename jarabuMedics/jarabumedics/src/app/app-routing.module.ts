@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'pharmaceuticals', loadChildren: './pharmaceuticals/pharmaceuticals.module#PharmaceuticalsPageModule' },
   { path: 'doctors', loadChildren: './doctors/doctors.module#DoctorsPageModule' },
   { path: 'secondopinionfacility', loadChildren: './secondopinionfacility/secondopinionfacility.module#SecondopinionfacilityPageModule' },
+  { path: 'location', loadChildren: './location/location.module#LocationPageModule' },
 
 ];
 

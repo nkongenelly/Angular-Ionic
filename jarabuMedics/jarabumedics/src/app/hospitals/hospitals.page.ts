@@ -17,6 +17,7 @@ export class HospitalsPage implements OnInit {
   hospitalName: string;
   hospitalContact: number;
   hospitalAddress: string;
+  hospitalLocation: string;
   b:number = 2;
   isRegistering;
   showRegisteringForm;
@@ -79,11 +80,13 @@ export class HospitalsPage implements OnInit {
     record['Name'] = this.hospitalName;
     record['Contact'] = this.hospitalContact;
     record['Address'] = this.hospitalAddress;
+    record['Location'] = this.hospitalLocation;
 
     this.crudService.create_NewHospital(record,this.b).then(resp => {
       this.hospitalName = "";
       this.hospitalContact = undefined;
       this.hospitalAddress = "";
+      this.hospitalLocation= "";
       // console.log(resp);
     })
       .catch(error => {
@@ -100,6 +103,7 @@ export class HospitalsPage implements OnInit {
     record.EditName = record.Name;
     record.EditContact = record.Contact;
     record.EditAddress = record.Address;
+    record.EditLocation = record.Location;
   }
  
   UpdateRecord(recordRow) {
@@ -107,6 +111,7 @@ export class HospitalsPage implements OnInit {
     record['Name'] = recordRow.EditName;
     record['Contact'] = recordRow.EditContact;
     record['Address'] = recordRow.EditAddress;
+    record['Location'] = recordRow.EditLocation 
     this.crudService.update_Hospital(recordRow.id, record,this.b);
     recordRow.isEdit = false;
   }
