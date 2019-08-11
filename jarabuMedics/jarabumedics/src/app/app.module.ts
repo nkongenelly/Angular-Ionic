@@ -23,6 +23,7 @@ import * as firebase from 'firebase';
 import {GoogleMaps} from '@ionic-native/google-maps';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 firebase.initializeApp(environment.firebase);
 
@@ -38,12 +39,13 @@ firebase.initializeApp(environment.firebase);
     AngularFireAuthModule,
   ],
   providers: [
-    Diagnostic,
-    AndroidPermissions,
+    // Diagnostic,
+    // AndroidPermissions,
     StatusBar,
     SplashScreen,
     AuthenticateService,
     GoogleMaps,
+    Geolocation,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

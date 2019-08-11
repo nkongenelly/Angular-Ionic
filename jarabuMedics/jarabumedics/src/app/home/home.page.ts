@@ -121,5 +121,25 @@ export class HomePage {
     this.addMarker();
 
   }
+  // showNearbyResto(){
+  //   this.service = this.service || new google.maps.places.PlacesService(document.createElement('div'));
+  //       let request = {
+  //         location: new google.maps.LatLng(latitude, longitude),
+  //         radius: '200',
+  //       };
+  //       return new Promise((resolve, reject) => {
+  //           this.service.nearbySearch(request, function(results, status){
+  //               console.log(status, results);
+  //               if (status == google.maps.places.PlacesServiceStatus.OK) {
+  //                   resolve(results.map(b => {
+  //                       return results;
+  //                   }));
+  //               }else{
+  //                   reject(results);
+  //               }
+  //           }
+  //       });
+      
+  // }
 
 }
