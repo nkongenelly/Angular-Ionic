@@ -20,6 +20,10 @@ import { FormsModule } from '@angular/forms';
 
 import * as firebase from 'firebase';
 
+import {GoogleMaps} from '@ionic-native/google-maps';
+import { Diagnostic } from '@ionic-native/diagnostic';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+
 firebase.initializeApp(environment.firebase);
 
 @NgModule({
@@ -34,9 +38,12 @@ firebase.initializeApp(environment.firebase);
     AngularFireAuthModule,
   ],
   providers: [
+    Diagnostic,
+    AndroidPermissions,
     StatusBar,
     SplashScreen,
     AuthenticateService,
+    GoogleMaps,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

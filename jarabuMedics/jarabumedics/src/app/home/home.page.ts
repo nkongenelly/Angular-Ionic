@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild ,ElementRef} from '@angular/core';
 //import { GeoHome ,GeoHomeOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation'; 
-import {GeoHome ,GeoHomeOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation/ngx';
+import {Geolocation ,GeolocationOptions ,Geoposition ,PositionError } from '@ionic-native/geolocation/ngx';
 import { NavController } from '@ionic/angular';
 
 declare var google;
@@ -10,9 +10,9 @@ declare var google;
   templateUrl: './Home.page.html',
   styleUrls: ['./Home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
-  options : GeoHomeOptions;
+  options : GeolocationOptions;
   currentPos : Geoposition;
   @ViewChild('map') mapElement: ElementRef;
   map: any;
@@ -20,20 +20,21 @@ export class HomePage implements OnInit {
   places : Array<any> ; 
 
   constructor(
-    public navCtrl: NavController,private geoHome : GeoHome
+    public navCtrl: NavController,private geolocation : Geolocation
   ) { }
 
   ngOnInit() {
+     this.getUserPosition();
   }
-  ionViewDidEnter(){
-    this.getUserPosition();
-  } 
+  // ionViewDidEnter(){
+  //   this.getUserPosition();
+  // } 
   //method to display the map based on the current user position:
   getUserPosition(){
       this.options = {
       enableHighAccuracy : false
       };
-      this.geoHome.getCurrentPosition(this.options).then((pos : Geoposition) => {
+      this.geolocation.getCurrentPosition(this.options).then((pos : Geoposition) => {
 
           this.currentPos = pos;     
 
@@ -69,7 +70,7 @@ export class HomePage implements OnInit {
   {
     var service = new google.maps.places.PlacesService(this.map);
     let request = {
-        Home : latLng,
+        location : latLng,
         radius : 8047 ,
         types: ["restaurant"]
     };
@@ -93,7 +94,7 @@ export class HomePage implements OnInit {
     let marker = new google.maps.Marker({
     map: this.map,
     animation: google.maps.Animation.DROP,
-    position: place.geometry.Home
+    position: place.geometry.location
     });   
   }  
   //invokes the previous methods and create the map
