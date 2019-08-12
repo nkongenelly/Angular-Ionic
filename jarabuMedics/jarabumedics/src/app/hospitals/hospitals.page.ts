@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from '../crud.service';
+import { HospitalmapService } from '../hospitalmap.service';
 import { MenuController, Platform } from '@ionic/angular';
 import { LoginPage } from '../login/login.page';
 import { StatusBar } from '../../../node_modules/@ionic-native/status-bar/ngx';
 import { SplashScreen } from '../../../node_modules/@ionic-native/splash-screen/ngx';
 import { ActivatedRoute } from '../../../node_modules/@angular/router';
+import { ViewChild ,ElementRef} from '@angular/core';
+
+declare var google;
 
 @Component({
   selector: 'app-hospitals',
@@ -21,11 +25,16 @@ export class HospitalsPage implements OnInit {
   b:number = 2;
   isRegistering;
   showRegisteringForm;
+  //map
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
+  mapOptions: any;
 
   constructor(
     private crudService: CrudService,
     private menu: MenuController,
     public activatedRoute: ActivatedRoute,
+    public hospitalMap: HospitalmapService,
     platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen
   ) { 
      
@@ -49,11 +58,12 @@ export class HospitalsPage implements OnInit {
   }
  
   ngOnInit() {
+    this.showRegisteringForm = "";
    //find if the logged in user has rights to right or just read i.e this.isRegistering['name'] = true means has rights to write
    if(this.isRegistering['dashboardPage'] != '/patients'){
     this.showRegisteringForm = this.isRegistering['name'];
     }
-  
+  // alert(this.showRegisteringForm);
     this.crudService.read_Hospital(this.b).subscribe(data => {
  
       this.hospitals = data.map(e => {
@@ -68,6 +78,13 @@ export class HospitalsPage implements OnInit {
       // console.log(this.hospitals);
  
     });
+    //show map
+  // }
+  // ionViewDidLoad(){
+    
+    this.mapOptions = this.hospitalMap.getUserPosition();
+    alert(this.hospitalMap.sample());
+    this.map = new google.maps.Map(this.mapElement.nativeElement, this.mapOptions);
   }
 
   openFirst() {
@@ -92,6 +109,11 @@ export class HospitalsPage implements OnInit {
       .catch(error => {
         // console.log(error);
       });
+  }
+
+  addThisMarker(){
+    this.hospitalMap.addMap(this.hospitalLocation,this.hospitalName);
+
   }
  
   RemoveRecord(rowID) {

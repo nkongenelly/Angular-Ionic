@@ -11,7 +11,7 @@
     </ion-toolbar>
 </ion-header>
  
-<ion-content padding *ngIf="showRegisteringForm">
+<ion-content padding *ngIf="showRegisteringForm == ':true' || howRegisteringForm == 'true'">
  
   <ion-grid fixed>
     <ion-row>
@@ -38,7 +38,7 @@
     <ion-row>
       <ion-col>
         <ion-item>
-          <ion-input placeholder="lat & longitude" [(ngModel)]="hospitalLocation"></ion-input>
+          <ion-input placeholder="lat,longitude" [(ngModel)]="hospitalLocation"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -51,10 +51,13 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <!-- show map of this hospital -->
+  <div #map id="map"></div> 
 </ion-content>
 
  <!-- show hospitals for read only without right permissions if hospital admins hasn't logged in -->
-<ion-content padding *ngIf="!showRegisteringForm">
+<ion-content padding *ngIf="showRegisteringForm != true">
  
   <ion-card *ngFor="let item of hospitals">
     <span *ngIf="!item.isEdit; else elseBlock">
