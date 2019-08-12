@@ -86,7 +86,9 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-geolocation": {},
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      },
       "cordova-plugin-googlemaps": {
         "API_KEY_FOR_ANDROID": "AIzaSyBz0RG7wuBNAt0V1wpQwE1_13ipXyyx2DA",
         "API_KEY_FOR_IOS": "AIzaSyBz0RG7wuBNAt0V1wpQwE1_13ipXyyx2DA"

@@ -17,7 +17,9 @@
 <div style="width : 100% ;height: 60%">
     <ion-list>
     <ion-item *ngFor="let place of places">
-        <p>{{place.name}}</p>
+        <ion-button>
+            <button (click) = "showHospital('-1.2849272,36.82790060000002')">{{place.name}}</button>
+        </ion-button>
     </ion-item>
     </ion-list>
 </div>

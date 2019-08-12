@@ -18,7 +18,7 @@ export class HomePage {
   map: any;
   //Array to hold the nearby places:
   places : Array<any> ; 
-
+ 
   constructor(
     public navCtrl: NavController,private geolocation : Geolocation
   ) { }
@@ -65,6 +65,27 @@ export class HomePage {
     });
 
   }
+
+  showHospital(latlng){
+  let location1 = latlng.split(",");
+  let location = {"lat":location1[0],"lng":location1[1]};
+  alert(JSON.stringify(location));
+   let marker = new google.maps.Marker({
+    map: this.map,
+    animation: google.maps.Animation.DROP,
+    position: location
+    });  
+
+    //change center to be this hospital
+    this.moveToLocation(location1[0],location1[1]);
+
+  }
+
+  moveToLocation(lat, lng){
+      var center = new google.maps.LatLng(lat, lng);
+      // using global variable:
+      this.map.panTo(center);
+  }
   //get the list of nearby restaurants
   getRestaurants(latLng)
   {
@@ -79,6 +100,7 @@ export class HomePage {
             if(status === google.maps.places.PlacesServiceStatus.OK)
             {
                 resolve(results);    
+                // alert(JSON.stringify(results));
             }else
             {
                 reject(status);
@@ -101,7 +123,7 @@ export class HomePage {
   addMap(lat,long){
 
     let latLng = new google.maps.LatLng(lat, long);
-
+    // alert(latLng);
     let mapOptions = {
     center: latLng,
     zoom: 15,
@@ -112,6 +134,7 @@ export class HomePage {
 
     this.getRestaurants(latLng).then((results : Array<any>)=>{
         this.places = results;
+        // console.log(JSON.stringify(results));
         for(let i = 0 ;i < results.length ; i++)
         {
             this.createMarker(results[i]);
