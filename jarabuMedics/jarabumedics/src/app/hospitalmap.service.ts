@@ -17,32 +17,44 @@ export class HospitalmapService {
   map: any;
   //Array to hold the nearby places:
   places : Array<any> ; 
+  toReturn:Array<any>;
 
   constructor(
     public navCtrl: NavController,private geolocation : Geolocation
   ) { }
 
-   getUserPosition(){
-     let toReturn;
+   getUserPosition(x):Promise<any>{
+      
       this.options = {
       enableHighAccuracy : false
       };
-      this.geolocation.getCurrentPosition(this.options).then((pos : Geoposition) => {
-
+      
+        
+     this.geolocation.getCurrentPosition(this.options).then((pos : Geoposition) => {
           this.currentPos = pos;     
 
           console.log(pos);
-          let latlng = pos.coords.latitude + "," + pos.coords.longitude
+          let latlng = pos.coords.latitude + "," + pos.coords.longitude;
           // alert(latlng);
           let message = "Current Position";
-          this.addMap(latlng,message);
-// alert(JSON.stringify(this.addMap(latlng,message)));
-         toReturn =  JSON.stringify(this.addMap(latlng,message));
-         this.returnThis(toReturn);
-      },(err : PositionError)=>{
+          this.toReturn[0] =  this.addMap(latlng,message);
+          
+          // alert(JSON.stringify(toReturn));
+        },(err : PositionError)=>{
           console.log("error : " + err.message);
-      ;
-      })
+        
+      });
+     alert(this.toReturn[0]);
+    return this.toReturn[0];
+      // alert(JSON.stringify(toReturn));
+     
+       
+          
+// alert(JSON.stringify(this.addMap(latlng,message)));
+         
+        
+        //  this.returnThis(toReturn);
+     
    
      
   }
@@ -159,7 +171,6 @@ export class HospitalmapService {
     zoom: 15,
     mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-
     //this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
     // this.getRestaurants(latLng).then((results : Array<any>)=>{
@@ -172,7 +183,8 @@ export class HospitalmapService {
     // },(status)=>console.log(status));
     this.createMarker(location);
     this.addMarker(latlng, message);
-    return mapOptions;
+    let toReturn = {"mapOptions":mapOptions};
+    return toReturn;
 
   }
   // showNearbyResto(){

@@ -58,13 +58,20 @@
 
  <!-- show hospitals for read only without right permissions if hospital admins hasn't logged in -->
 <ion-content padding *ngIf="showRegisteringForm != true">
- 
+  <div #map id="map"></div> 
   <ion-card *ngFor="let item of hospitals">
     <span *ngIf="!item.isEdit; else elseBlock">
         <ion-card-header>
             <ion-card-title>{{item.Name}} of {{item.Contact}} </ion-card-title>
             <ion-card-subtitle>From: {{item.Address}}</ion-card-subtitle>
           </ion-card-header>
+          <ion-card-content>
+            <!-- <ion-button> -->
+              <ion-button (click)="addMap(item.Location,item.Name)">
+                Go to map
+              </ion-button>
+            <!-- </ion-button> -->
+          </ion-card-content>
           <!-- <ion-card-content>
      
             <ion-button shape="round" color="secondary" size="small" (click)="EditRecord(item)">

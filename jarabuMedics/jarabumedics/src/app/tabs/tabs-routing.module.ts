@@ -18,6 +18,7 @@ const routes: Routes = [
         {path: '',loadChildren: './tabs/menu.module#MenuPageModule'},
       ]
   },
+
   {
     path: '',
     redirectTo: '/tabs/menu',

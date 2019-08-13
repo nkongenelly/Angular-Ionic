@@ -47,15 +47,17 @@ export class HomePage {
       })
   }
   //to add a amrker
-  addMarker(){
-
+  addMarker(latlng, message){
+    let location1 = latlng.split(",");
+    let location = {"lat":location1[0],"lng":location1[1]};
+//   alert(location);
     let marker = new google.maps.Marker({
     map: this.map,
     animation: google.maps.Animation.DROP,
-    position: this.map.getCenter()
-    });
+    position: location
+    });  
 
-    let content = "<p>This is your current position !</p>";          
+    let content = "<p>"+message+"</p>";          
     let infoWindow = new google.maps.InfoWindow({
     content: content
     });
@@ -63,6 +65,7 @@ export class HomePage {
     google.maps.event.addListener(marker, 'click', () => {
     infoWindow.open(this.map, marker);
     });
+    this.showHospital(latlng);
 
   }
 
@@ -120,7 +123,12 @@ export class HomePage {
     });   
   }  
   //invokes the previous methods and create the map
-  addMap(lat,long){
+  addMap(latlng, message){
+    let location1 = latlng.split(",");
+    let lat = location1[0]
+    let long = location1[1];
+
+    let location = {"lat":location1[0],"lng":location1[1]};
 
     let latLng = new google.maps.LatLng(lat, long);
     // alert(latLng);
@@ -132,16 +140,16 @@ export class HomePage {
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-    this.getRestaurants(latLng).then((results : Array<any>)=>{
-        this.places = results;
-        // console.log(JSON.stringify(results));
-        for(let i = 0 ;i < results.length ; i++)
-        {
-            this.createMarker(results[i]);
-        }
-    },(status)=>console.log(status));
-
-    this.addMarker();
+    // this.getRestaurants(latLng).then((results : Array<any>)=>{
+    //     this.places = results;
+    //     // console.log(JSON.stringify(results));
+    //     for(let i = 0 ;i < results.length ; i++)
+    //     {
+    //         this.createMarker(results[i]);
+    //     }
+    // },(status)=>console.log(status));
+    this.createMarker(location);
+    this.addMarker(latlng, message);
 
   }
   // showNearbyResto(){
