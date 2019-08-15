@@ -136,12 +136,13 @@ export class HospitalsPage implements OnInit {
     this.crudService.delete_Hospital(rowID,this.b);
   }
  
-  EditRecord(record) {
+  EditRecord(record) {   
     record.isEdit = true;
     record.EditName = record.Name;
     record.EditContact = record.Contact;
     record.EditAddress = record.Address;
     record.EditLocation = record.Location;
+    // alert(JSON.stringify(record));
   }
  
   UpdateRecord(recordRow) {

@@ -34,16 +34,16 @@ export class DoctorsPage implements OnInit {
       if(JSON.parse(res.value) != null){
         // console.log(JSON.parse(res.value));
         this.isRegistering = JSON.parse(res.value);
-        // alert(JSON.parse(res.value[0][1]));
+            //find if the logged in user has rights to right or just read i.e this.isRegistering['name'] = true means has rights to write
+        if(this.isRegistering['dashboardPage'] != '/patients'){
+          this.showRegisteringForm = this.isRegistering['name'];
+        }
       }
     });
   }
 
   ngOnInit() {
-     //find if the logged in user has rights to right or just read i.e this.isRegistering['name'] = true means has rights to write
-     if(this.isRegistering['dashboardPage'] != '/patients'){
-      this.showRegisteringForm = this.isRegistering['name'];
-     }
+ 
      
     this.crudService.read_Hospital(this.b).subscribe(data => {
  

@@ -77,16 +77,13 @@
           </ion-button>
         </ion-card-content>
       </span>
-  </ion-card>
-    <ion-card>
+  <!-- </ion-card>
+    <ion-card> -->
       <ng-template #elseBlock>
         <ion-card-header>
           <ion-card-title>
             <ion-grid>
               <ion-row>
-                <ion-col>
-                  Edit
-                </ion-col>
                 <ion-col>
                   <ion-button fill="clear" color="medium" size="small" (click)="item.isEdit = false">
                     Cancel
@@ -129,11 +126,15 @@
   <div #map id="map"></div> 
   <ion-card *ngFor="let item of hospitals">
     <span *ngIf="!item.isEdit; else elseBlock">
-        <ion-card-header>
+        <ion-card-header *ngIf="item; else elseEmpty">
             <ion-card-title>{{item.Name}} of {{item.Contact}} </ion-card-title>
             <ion-card-subtitle>From: {{item.Address}}</ion-card-subtitle>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-header #elseEmpty>
+            <ion-card-title>No records available</ion-card-title>
+            <ion-card-subtitle>Check again for updates</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content *ngIf="item">
           <!-- <ion-button> -->
             <ion-button (click)="addMap(item.Location,item.Name)">
               Go to map
