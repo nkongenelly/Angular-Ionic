@@ -162,7 +162,7 @@ export class HospitalsPage implements OnInit {
     ;
     })
 }
-//to add a amrker
+//to add a marker
 addMarker(latlng, message){
   let location1 = latlng.split(",");
   let location = {"lat":location1[0],"lng":location1[1]};

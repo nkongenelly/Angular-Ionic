@@ -14,6 +14,7 @@ const routes: Routes = [
     children:
       [
         {path: 'menu',loadChildren: './menu/menu.module#MenuPageModule'},
+        {path: 'home',loadChildren: './home/home.module#HomePageModule'},
         {path: 'contacts',loadChildren: './contacts/contacts.module#ContactsPageModule'},
         {path: '',loadChildren: './tabs/menu.module#MenuPageModule'},
       ]
@@ -21,7 +22,7 @@ const routes: Routes = [
 
   {
     path: '',
-    redirectTo: '/tabs/menu',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   }
 ];
@@ -38,4 +39,7 @@ const routes: Routes = [
       RouterModule
   ]
 })
-export class TabsPageRoutingModule {}
+
+export class TabsPageRoutingModule {
+  
+}

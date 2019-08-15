@@ -51,6 +51,14 @@ export class RegisterPage implements OnInit {
        console.log(res);
        this.errorMessage = "";
        this.successMessage = "Your account has been created. Please log in.";
+       //create user in the users collection with category admin or client
+       if(value.email == 'superadmin@gmail.com'){
+         value["category"] = "Admin";
+         this.authService.createUser(value);
+       }else{
+      value["category"] = "patient";
+       this.authService.createUser(value);
+       }
      }, err => {
        console.log(err);
        this.errorMessage = err.message;

@@ -17,15 +17,17 @@ export class LoginPage implements OnInit {
   users: any;
   usersEmail: string;
   usersCategory: string[] = [];
-  dashboard:string[] = ['/hospital','/patients','/pharmaceuticals','/doctors','/secondopinionfacility'];  
-  readCategory:string[] = ['facility','patient','pharmaceutical','doctor','secondOpinionFacility'];  
-  isRegistering = {name:true};
+  dashboard:string[] = ['/menu','/patients'];  
+  readCategory:string[] = ['Admin','patient'];  
+  isRegistering ={name:false};
+
   constructor(
  
     private navCtrl: NavController,
     private authService: AuthenticateService,
     private formBuilder: FormBuilder,
-    public router: Router
+    public router: Router,
+    
  
   ) {}
  
@@ -78,6 +80,15 @@ export class LoginPage implements OnInit {
           if(this.users[user].Email == value.email){
             this.usersCategory[0] = this.users[user].Category;
           }
+        }
+        //check whether i is admin who has logged in or just patient
+        if(this.usersCategory[0] == "Admin"){
+          this.isRegistering['name'] = true; //this variable will be used to redirect to the admin only registration pages
+          // alert('true');
+        }
+        else{
+          this.isRegistering['name'] = false;
+          // alert('false');
         }
 //open the respective dashboard dynamically
         for(let x = 0; x<this.readCategory.length; x++){

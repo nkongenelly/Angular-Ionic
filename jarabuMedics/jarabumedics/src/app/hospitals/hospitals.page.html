@@ -11,8 +11,9 @@
     </ion-toolbar>
 </ion-header>
  
-<ion-content padding *ngIf="showRegisteringForm == ':true' || howRegisteringForm == 'true'">
- 
+<ion-content padding *ngIf="showRegisteringForm">
+  <!-- show map of this hospital -->
+  <div #map id="map"></div> 
   <ion-grid fixed>
     <ion-row>
       <ion-col>
@@ -52,8 +53,7 @@
     </ion-row>
   </ion-grid>
 
-  <!-- show map of this hospital -->
-  <div #map id="map"></div> 
+ 
 </ion-content>
 
  <!-- show hospitals for read only without right permissions if hospital admins hasn't logged in -->
@@ -84,7 +84,11 @@
             </ion-button>
           </ion-card-content> -->
         </span>
-        <!-- <ng-template #elseBlock>
+      </ion-content>
+      <ion-content *ngIf="item.isEdit">
+        <ion-card *ngFor="let item of hospitals">
+          <span >
+           <div #map id="map"></div> 
           <ion-card-header>
             <ion-card-title>
               <ion-grid>
@@ -119,8 +123,12 @@
           <ion-label><strong>Address</strong></ion-label>
           <ion-input type="text" [(ngModel)]="item.EditAddress"></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-label><strong>Location</strong></ion-label>
+          <ion-input type="text" [(ngModel)]="item.EditLocation"></ion-input>
+        </ion-item>
       </ion-card-content>
-    </ng-template> -->
+    </ng-template>
   </ion-card>
 
 </ion-content>
