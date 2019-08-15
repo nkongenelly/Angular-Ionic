@@ -44,13 +44,16 @@ export class HospitalsPage implements OnInit {
     private geolocation : Geolocation,
     platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen
   ) { 
-     
+     this.showRegisteringForm = "";
    // get the query params if it comes from registering or else set query params if directly loggin in
     this.activatedRoute.queryParams.subscribe((res)=>{
       if(JSON.parse(res.value) != null){
         // console.log(JSON.parse(res.value));
         this.isRegistering = JSON.parse(res.value);
         // alert(JSON.parse(res.value[0][1]));
+        if(this.isRegistering['dashboardPage'] != '/patients'){
+          this.showRegisteringForm = this.isRegistering['name'];
+        }
       }
     });
 
@@ -65,12 +68,8 @@ export class HospitalsPage implements OnInit {
   }
  
   ngOnInit() {
-    this.showRegisteringForm = "";
-   //find if the logged in user has rights to right or just read i.e this.isRegistering['name'] = true means has rights to write
-   if(this.isRegistering['dashboardPage'] != '/patients'){
-    this.showRegisteringForm = this.isRegistering['name'];
-    }
-  // alert(this.showRegisteringForm);
+    
+    // alert(this.showRegisteringForm);
     this.crudService.read_Hospital(this.b).subscribe(data => {
  
       this.hospitals = data.map(e => {
@@ -89,8 +88,20 @@ export class HospitalsPage implements OnInit {
     //show map
     this.getUserPosition();
   }
-  ngAfterViewInit() {
-  }
+  // ngAfterViewInit() {
+  //       this.showRegisteringForm = "";
+  //  //find if the logged in user has rights to right or just read i.e this.isRegistering['name'] = true means has rights to write
+  //  if(this.isRegistering['dashboardPage'] != '/patients'){
+  //   this.showRegisteringForm = this.isRegistering['name'];
+  //   }
+  // }
+  // ionViewDidEnter(){
+  //     this.showRegisteringForm = "";
+  //  //find if the logged in user has rights to right or just read i.e this.isRegistering['name'] = true means has rights to write
+  //  if(this.isRegistering['dashboardPage'] != '/patients'){
+  //   this.showRegisteringForm = this.isRegistering['name'];
+  //   }
+  // }
 
   openFirst() {
     this.menu.enable(true, 'first');

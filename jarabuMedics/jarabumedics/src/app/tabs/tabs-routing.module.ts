@@ -16,7 +16,7 @@ const routes: Routes = [
         {path: 'menu',loadChildren: './menu/menu.module#MenuPageModule'},
         {path: 'home',loadChildren: './home/home.module#HomePageModule'},
         {path: 'contacts',loadChildren: './contacts/contacts.module#ContactsPageModule'},
-        {path: '',loadChildren: './tabs/menu.module#MenuPageModule'},
+        // {path: '',loadChildren: './tabs/menu.module#MenuPageModule'},
       ]
   },
 
