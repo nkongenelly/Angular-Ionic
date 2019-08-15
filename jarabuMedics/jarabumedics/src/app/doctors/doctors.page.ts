@@ -29,6 +29,7 @@ export class DoctorsPage implements OnInit {
     private menu: MenuController,
     public activatedRoute: ActivatedRoute
   ) { 
+    this.showRegisteringForm = "";
     // get the query params if it comes from registering or else set query params if directly loggin in
      this.activatedRoute.queryParams.subscribe((res)=>{
       if(JSON.parse(res.value) != null){

@@ -10,7 +10,7 @@
     </ion-toolbar>
   </ion-header>
   
-  <ion-content padding *ngIf="showRegisteringForm">
+  <ion-content padding *ngIf="showRegisteringForm ===true">
       <ion-grid fixed>
         <!-- Name picked from the signed in details -->
           <ion-row>
@@ -133,7 +133,7 @@
     </ion-card>
   </ion-content>
 
-  <ion-content padding *ngIf="!showRegisteringForm">
+  <ion-content padding *ngIf="showRegisteringForm !=true">
     <!-- <ion-card  *ngIf="patient"> -->
       <ion-card  *ngFor="let item of patient">
         <span *ngIf="!item.isEdit; else elseBlock">
