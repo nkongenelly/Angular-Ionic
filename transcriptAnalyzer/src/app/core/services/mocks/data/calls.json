@@ -1,0 +1,32 @@
+[
+  {
+    "call_id": "572a41e7a",
+    "calltype_id": "f44785ceA",
+    "agent": {
+      "agent_id": "A7f63308a",
+      "full_name": "Harvey Pekar",
+      "channel": 1
+    },
+    "customer": {
+      "full_name": "Luke Skywalker",
+      "channel": 2
+    },
+    "call_start_time": "2020-07-20 01:00:45",
+    "duration": 238900
+  },
+  {
+    "call_id": "572a41e7b",
+    "calltype_id": "f44785ceB",
+    "agent": {
+      "agent_id": "7f63308ab",
+      "full_name": "Jonah Jameson",
+      "channel": 1
+    },
+    "customer": {
+      "full_name": "John Doe",
+      "channel": 2
+    },
+    "call_start_time": "2020-07-22 08:45:45",
+    "duration": 238900
+  }
+]

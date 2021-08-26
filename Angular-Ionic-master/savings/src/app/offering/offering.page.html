@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-nav>
+      <ion-buttons start>
+        <button ion-button icon-only>
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </button>
+      </ion-buttons>
+      <ion-buttons right>
+          <button ion-button icon-only (click)="buttonAddOffering()">
+              <ion-icon name="add"></ion-icon>
+          </button>
+      </ion-buttons>
+      <ion-title> My Offerings</ion-title>
+      
+    </ion-nav>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf = "offerings.length == 0">
+    <ion-text color="tertiary">No offering created. Add offerings to see them here.</ion-text>
+</ion-content>
+<ion-content *ngIf = "offerings.length > 0">
+  <ion-card *ngFor="let offering of offerings">
+     <!-- | async" routerLink="/detail/{{song.id}}"> -->
+    <ion-card-header>
+      {{ offering.offering }}
+    </ion-card-header>
+    <ion-card-content>
+      Amount: {{ offering.amount }}
+    </ion-card-content>
+    <ion-card-content>
+      Month: {{ offering.month }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

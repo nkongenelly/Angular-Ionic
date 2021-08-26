@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-nav>
+          <ion-buttons start>
+            <button ion-button icon-only>
+              <ion-back-button defaultHref="/home"></ion-back-button>
+            </button>
+          </ion-buttons>
+          <ion-buttons right>
+              <button ion-button icon-only (click)="buttonAddIncome()">
+                  <ion-icon name="add"></ion-icon>
+              </button>
+          </ion-buttons>
+          <ion-title>Income</ion-title>
+          
+        </ion-nav>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content padding *ngIf="mySavings.length > 0">
+      <ion-item *ngFor = "let saving of mySavings; index as i" >
+        <ion-label> {{ saving.savings}}</ion-label>
+        <ion-badge color="tertiary" slot="end"> {{ saving.amount }} </ion-badge>
+        <ion-button 
+          (click)="editSaving(i)"
+          color="success" size="small" >Edit</ion-button>
+        <ion-button color="danger" size="small" (click)="deleteSaving($i)">Delete</ion-button>
+      </ion-item>
+    </ion-content>
+    
+    <ion-content *ngIf="mySavings.length == 0" padding>
+      <ion-text color="tertiary">No Income recorded. Add income to see them here.</ion-text>
+    </ion-content>
+    

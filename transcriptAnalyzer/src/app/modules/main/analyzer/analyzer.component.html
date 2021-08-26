@@ -1,0 +1,106 @@
+<ng-template #subHeader>
+	<div class="flex">
+		<div class="selects">
+			<div class="select">
+				<label for="agent">Agent</label>
+				<select (change)="selectAgent($event)" id="agent" name="agent">
+					<option
+						*ngFor="let agent of agents.agents$ | async"
+						[value]="agent.id"
+					>
+						{{ agent.fullName }}
+					</option>
+				</select>
+			</div>
+
+			<div class="select">
+				<label for="call">Call</label>
+				<select (change)="selectCall($event)" id="call" name="call">
+					<option
+						*ngFor="let call of calls.activeAgentCalls$ | async"
+						[value]="call.id"
+					>
+						{{ call.startTime }}
+					</option>
+					<option>...</option>
+				</select>
+			</div>
+		</div>
+
+		<div style="align-items: center; display: flex; gap: 0.5rem">
+			MATCHING SENSITIVITY
+			<input
+				#matcher
+				(change)="calls.setMatchingPercentage(matcher.value)"
+				[value]="calls.matchingPercentage$ | async"
+				max="100"
+				min="1"
+				type="range"
+				value="50"
+			/>
+		</div>
+	</div>
+</ng-template>
+
+<section class="content">
+	<div class="card">
+		<h1>
+			Real
+			<span>Matching: 32%</span>
+		</h1>
+		<table *ngIf="calls.activeTranscript$ | async as call" width="100%">
+			<thead>
+				<th>Time</th>
+				<th>Speaker</th>
+				<th>Sentence</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let transcript of call.transcript">
+					<td>{{ transcript.timeFrom }}</td>
+					<td>{{ call.getSpeaker(transcript.channel) }}</td>
+					<td *ngIf="transcript.matchingSentence"
+						tooltip="61% matching with line #1 'This is a sample sentence #76'"
+						class="matching"
+						>
+						{{transcript.matchingSentence}}
+					</td>
+					<td *ngIf="!transcript.matchingSentence">{{transcript.sentence}}</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="card">
+		<h1>
+			Expected
+			<span>Matching: 0%</span>
+		</h1>
+		<!-- TODO: Add Expected -->
+		<table *ngIf="calls.activeTranscript$ | async as call" width="100%">
+			<thead>
+				<th>Line</th>
+				<th>Speaker</th>
+				<th>Sentence</th>
+			</thead>
+			<tbody>
+				<tr *ngFor="let script of call.script, let transcript of call.transcript">
+					<td>{{ transcript.order }}</td>
+					<td>{{ "Rep: " }}</td>
+					<td *ngIf="transcript.matchingSentence"
+						tooltip="61% matching with line #1 'This is a sample sentence #76'"
+						class="matching"
+						>
+						{{script.matchingSentence}}
+					</td>
+					<td *ngIf="!transcript.matchingSentence">{{script.sentence}}</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+<ng-template>
+	<div class="empty-state">No data to be displayed</div>
+</ng-template>

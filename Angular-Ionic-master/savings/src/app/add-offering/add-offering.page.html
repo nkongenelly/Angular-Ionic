@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-nav>
+        <ion-buttons start>
+            <button ion-button icon-only>
+              <ion-back-button defaultHref="/savings"></ion-back-button>
+            </button>
+        </ion-buttons>
+        <ion-title>Add Ofering</ion-title>
+    </ion-nav>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="createOfferingForm" (submit)="createOffering()">
+    <ion-item>
+      <ion-label position="floating">Type of offering</ion-label>
+      <ion-input formControlName="offeringName" type="text" 
+        placeholder="Name of offering">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Amount</ion-label>
+      <ion-input formControlName="amountName" type="number" 
+        placeholder="Numbers only">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Month</ion-label>
+      <ion-input formControlName="monthName" type="text" 
+        placeholder="Month">
+      </ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" 
+      [disabled]="!createOfferingForm.valid">
+      Add
+    </ion-button>
+  </form>
+</ion-content>
