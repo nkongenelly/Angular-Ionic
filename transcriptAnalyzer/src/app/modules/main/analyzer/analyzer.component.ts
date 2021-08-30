@@ -48,6 +48,12 @@ export default class AnalyzerComponent implements OnInit, AfterViewInit {
 		this.calls.selectCall(event.target?.value);
 		console.log("call = ", this.calls);
 	}
+
+	public greaterThan(transcriptPerc: any, scriptPerc: any) {
+		var matching = transcriptPerc ? transcriptPerc * 100 > scriptPerc! : false;
+		return matching;
+	}
+
 }
 
 const MOCK_DATA = () => {
